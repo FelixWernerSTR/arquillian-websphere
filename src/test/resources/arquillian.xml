@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<arquillian xmlns="http://www.jboss.org/arquillian-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.jboss.org/arquillian-1.0 http://jboss.org/schema/arquillian/arquillian-1.0.xsd">
+	
+	<!-- ATTENTION! After changing this xml, you should cleanup and build your project to make it active under eclipse-->  
+    <container qualifier="was-9-remote" default="true"> <!-- to test against websphere execute JUnitTest with JVM option -Darquillian.launch=was-9-remote -->
+        <configuration>
+            <property name="remoteServerAddress">localhost</property>
+            <property name="remoteServerSoapPort">8880</property>
+            <property name="securityEnabled">false</property> <!-- global security off-->
+            <property name="username">admin</property>
+           	<!-- property name="password">admin</property>
+ 			<property name="sslTrustStore">G:/devel/websphere9/AppServer/profiles/AppSrv01/etc/DummyClientTrustFile.jks</property>
+			<property name="sslTrustStorePassword">WebAS</property-->
+        </configuration>
+    </container>
+    
+     <engine>
+        <property name="deploymentExportPath">target/deployments</property>
+    </engine>
+    
+</arquillian>

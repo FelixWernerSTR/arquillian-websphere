@@ -1,0 +1,235 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.fewe.arquillian.websphere</groupId>
+	<artifactId>arquillian-websphere</artifactId>
+	<version>20.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>arquillian-websphere</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		 <was.home>G:\devel\websphere9\AppServer</was.home>
+         <was.as.version>9.0</was.as.version>
+         <ibm.java.version>java/8.0</ibm.java.version>
+	</properties>
+
+
+
+	<!-- ======================================================================== 
+		Managed Dependencies ======================================================================== -->
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>1.6.0.Final</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.jboss.spec.javax.ejb</groupId>
+		    <artifactId>jboss-ejb-api_3.2_spec</artifactId>
+		    <version>2.0.0.Final</version>
+		    <scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-depchain</artifactId>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-bom</artifactId>
+			<version>3.1.4</version>
+			<scope>import</scope>
+			<type>pom</type>
+		</dependency>
+        <!-- org.jboss.arquillian -->
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.protocol</groupId>
+            <artifactId>arquillian-protocol-servlet</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.testenricher</groupId>
+            <artifactId>arquillian-testenricher-cdi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.testenricher</groupId>
+            <artifactId>arquillian-testenricher-ejb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.testenricher</groupId>
+            <artifactId>arquillian-testenricher-resource</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.testenricher</groupId>
+            <artifactId>arquillian-testenricher-initialcontext</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+            <artifactId>shrinkwrap-descriptors-api-javaee</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+            <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        
+        <!-- Testing -->
+
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+		<dependency>
+		  <groupId>org.jboss.arquillian.container</groupId>
+		  <artifactId>arquillian-was-remote-8.5</artifactId>
+		  <version>1.0.0.RC1</version>
+		  <scope>system</scope>
+		  <systemPath>${basedir}/src/test/resources/arquillian-was-remote-8.5-1.0.0.RC1.jar</systemPath>
+		</dependency>
+
+        <!-- com.ibm.websphere -->
+        <dependency>
+          <groupId>com.ibm.ws.orb</groupId>
+          <artifactId>ws-orb</artifactId>
+          <version>${was.as.version}</version>
+          <scope>system</scope>
+          <systemPath>${was.home}/runtimes/com.ibm.ws.orb_${was.as.version}.jar</systemPath>
+        </dependency>
+
+        <dependency>
+          <groupId>com.ibm.ws.admin</groupId>
+          <artifactId>client</artifactId>
+          <version>${was.as.version}</version>
+          <scope>system</scope>
+          <systemPath>${was.home}/runtimes/com.ibm.ws.admin.client_${was.as.version}.jar</systemPath>
+        </dependency>
+
+        <dependency>
+          <groupId>com.ibm.websphere</groupId>
+          <artifactId>was-public</artifactId>
+          <version>${was.as.version}</version>
+          <scope>system</scope>
+          <systemPath>${was.home}/dev/was_public.jar</systemPath>
+        </dependency>
+      
+        <dependency>
+          <groupId>com.ibm.websphere</groupId>
+          <artifactId>jgss-provider</artifactId>
+          <version>${was.as.version}</version>
+          <scope>system</scope>
+          <systemPath>${was.home}/${ibm.java.version}/jre/lib/ibmjgssprovider.jar</systemPath>
+        </dependency>
+
+        <dependency>
+          <groupId>org.eclipse.osgi</groupId>
+          <artifactId>org.eclipse.osgi</artifactId>
+          <version>3.7.1</version>
+          <scope>test</scope>
+        </dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+
+					<execution>
+						<id>deployment-inspector-ejb-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}</outputDirectory>
+							<finalName>deployment</finalName>
+							<appendAssemblyId>true</appendAssemblyId>
+							<descriptors>
+								<descriptor>src/main/resources/inspector-ejb-assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>deployment-inspector-client-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}</outputDirectory>
+							<finalName>${project.artifactId}-${project.version}</finalName>
+							<appendAssemblyId>true</appendAssemblyId>
+							<descriptors>
+								<descriptor>src/main/resources/inspector-client-assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>inspector-ear</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}</outputDirectory>
+							<finalName>${project.artifactId}</finalName>
+							<appendAssemblyId>true</appendAssemblyId>
+							<archiverConfig>
+								<appxml>src/main/resources/application.xml</appxml>
+							</archiverConfig>
+							<descriptors>
+								<descriptor>src/main/resources/inspector-ear-assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+
+			</plugin>
+		</plugins>
+
+	</build>
+</project>
