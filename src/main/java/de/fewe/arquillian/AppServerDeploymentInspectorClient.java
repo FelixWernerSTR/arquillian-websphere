@@ -30,8 +30,8 @@ public class AppServerDeploymentInspectorClient {
 
 	private static final Logger logger = Logger.getLogger(AppServerDeploymentInspectorClient.class);
 
-	static String jndiLookupWebsphere = "ejb/ipl-deployment-inspector/deployment-inspector-ejb.jar/AppServerDeploymentInspectorBean#com.fja.ipl.bsf.util.jee.inspector.AppServerDeploymentInspector";
-	static String jndiLookupJBoss = "ejb:ipl-deployment-inspector/deployment-inspector-ejb//AppServerDeploymentInspectorBean!com.fja.ipl.bsf.util.jee.inspector.AppServerDeploymentInspector";
+	static String jndiLookupWebsphere = "ejb/ipl-deployment-inspector/deployment-inspector-ejb.jar/AppServerDeploymentInspectorBean#de.fewe.arquillian.AppServerDeploymentInspector";
+	static String jndiLookupJBoss = "ejb:ipl-deployment-inspector/deployment-inspector-ejb//AppServerDeploymentInspectorBean!de.fewe.arquillian.AppServerDeploymentInspector";
 
 	String jndiLookup = null;
 

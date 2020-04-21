@@ -41,7 +41,7 @@ public class ApplicationServerDeploymentInspectorEjbTest implements Serializable
 		JavaArchive deployment_configurer = ShrinkWrap.create(JavaArchive.class, "deployment-inspector-ejb.jar")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addClass(AppServerDeploymentInspector.class)
 				.addClass(AppServerDeploymentInspectorBean.class)
-				.addAsResource("src/main/resources/log4j.properties")
+				.addAsResource("log4j.properties")
 				.addClass(ApplicationServerDeploymentInspectorEjbTest.class);
 
 		final EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class)
